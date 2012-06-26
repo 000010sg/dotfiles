@@ -1,69 +1,83 @@
 # buildserver
-Host tibuild
-User buildadmin
-HostName sud-chitibld01
+  Host tibuild
+  User buildadmin
+  HostName sud-chitibld01
 
 # prod stack
-Host prod-is
-User prodappadmin
-HostName sup-chiti06
+  Host prod-is
+  User prodappadmin
+  HostName sup-chiti06
 
-Host prod-ts
-User prodappadmin
-HostName sup-chiti07
+  Host prod-ts
+  User prodappadmin
+  HostName sup-chiti07
 
-Host prod-ps
-User prodappadmin
-HostName sup-chiti08
+  Host prod-ps
+  User prodappadmin
+  HostName sup-chiti08
 
 # mirror stack
-Host mirror-is mirror-ps
-User prodappadmin
-HostName suq-chiposqa01
+  Host mirror-is mirror-ps
+  User prodappadmin
+  HostName suq-chiposqa01
 
-Host mirror-ts
-User prodappadmin
-HostName suq-chiposqa02
+  Host mirror-ts
+  User prodappadmin
+  HostName suq-chiposqa02
 
 # prod tfls
-Host prod-tfls
-User prodappadmin
-HostName sup-chiti02
+  Host prod-tfls
+  User prodappadmin
+  HostName sup-chiti02
 
 # prod butler
-Host prod-butler-settles
-User prodappadmin
-HostName sup-ldnfas01
+  Host prod-butler-settles
+  User prodappadmin
+  HostName sup-ldnfas01
 
-Host prod-butler-cme
-User prodappadmin
-HostName sup-chiticme01
+  Host prod-butler-cme
+  User prodappadmin
+  HostName sup-chiticme01
 
 # prod web 
-Host prod-web-primary
-User prodappadmin
-HostName sup-chirisk02
+  Host prod-web-primary
+  User prodappadmin
+  HostName sup-chirisk02
 
-Host prod-web-backup
-User prodappadmin
-HostName sup-chiti02
+  Host prod-web-backup
+  User prodappadmin
+  HostName sup-chiti02
 
 # dev web
-Host dev-web
-User prodappadmin
-HostName sud-chirisk01
+  Host dev-web
+  User prodappadmin
+  HostName sud-chirisk01
 
 # bravo web 
-Host prod-bravo-primary
-User prodappadmin
-HostName sup-chigto02
+  Host prod-bravo-primary
+  User prodappadmin
+  HostName sup-chigto02
 
-Host prod-bravo-backup
-User prodappadmin
-HostName sup-chigto03
+  Host prod-bravo-backup
+  User prodappadmin
+  HostName sup-chigto03
 
-# dev web
-Host dev-bravo
-User prodappadmin
-HostName vud-chigtodev01
+# bravo dev web
+  Host dev-bravo
+  User prodappadmin
+  HostName vud-chigtodev01
 
+# createserver mirror
+  Host mirror-createserver
+  User prodappadmin
+  HostName suq-chiposqa02
+
+# sbs taps
+  Host sbs-taps
+  User prodappadmin
+  HostName sup-chiti20
+
+# prod taps
+  Host prod-taps
+  User prodappadmin
+  HostName sup-chiti04

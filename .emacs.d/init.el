@@ -20,7 +20,8 @@
                       clojure-test-mode
                       clojurescript-mode
                       color-theme
-                      color-theme-solarized)
+                      color-theme-solarized
+                      expectations-mode)
                       
   "A list of packages to ensure are installed at launch.")
 
@@ -62,11 +63,11 @@
 
 ;; use inconsolata
 (set-face-attribute 'default nil
-                    :family "Inconsolata"
-                    :height 140)
+                    :family "DejaVu Sans Mono"
+                    :height 120)
 
 ;; show line numbers
-(when window-system (global-linum-mode t))
+;; (when window-system (global-linum-mode t))
 
 ;; tabs are 2 spaces
 (setq-default tab-width 2)
@@ -105,3 +106,8 @@
 
 ;; where did this go in esk?
 (global-set-key (kbd "C-x \\") 'align-regexp)
+(put 'upcase-region 'disabled nil)
+
+;; TI specific stuff
+
+(setq ti-utils-src-dir "~/sandbox/taps")

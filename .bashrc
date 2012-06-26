@@ -36,16 +36,9 @@ export CLOJURESCRIPT_WATCH_HOME="$HOME/sandbox/src/cljs-watch"
 export PATH="$CLOJURESCRIPT_HOME/bin:$PATH"
 export PATH="$CLOJURESCRIPT_WATCH_HOME:$PATH"
 
-# java
-export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/"
-
 # lbm (ugh)
-export DYLD_LIBRARY_PATH="/usr/local/29west/LBM_3.6/Darwin-9.8.0-x86_64/lib/"
+export LD_LIBRARY_PATH="/site/apps/LBM_3.6/Linux-2.6-glibc-2.5-x86_64/lib"
 
-# golang
-export GOROOT="/usr/local/Cellar/go/r60.1"
-export PATH="$GOROOT/bin:$PATH"
-
-# rubygems
-export PATH="/usr/local/Cellar/ruby/1.9.3-p0/bin:$PATH"
-
+# rbenv 9_9
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

@@ -22,7 +22,7 @@
                       color-theme
                       color-theme-solarized
                       expectations-mode)
-                      
+
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -80,6 +80,16 @@
     (progn
       (require 'color-theme-solarized)
       (color-theme-solarized-light))))
+
+;; CLOJURE
+;;--------------------------------------------------
+
+(eval-after-load 'clojure-mode
+  '(define-clojure-indent
+     (contract 'defun)
+     (defconstrainedfn 'defun)
+     (defcontract 'defun)
+     (provide 'defun)))
 
 ;; KEYBINDINGS
 ;;--------------------------------------------------

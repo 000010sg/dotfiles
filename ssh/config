@@ -1,3 +1,6 @@
+IdentityFile ~/.ssh/id_rsa.work
+IdentityFile ~/.ssh/id_rsa.pub
+
 # buildserver
   Host tibuild
   User buildadmin

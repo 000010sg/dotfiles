@@ -46,3 +46,6 @@ export PATH="$GOROOT/bin:$PATH"
 # rbenv 9_9
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# fucking fig
+export FIG_REMOTE_URL=ftp://devnas/builds/Fig/repos

@@ -3,7 +3,7 @@
 ;; Author: Gareth Jones <gjones@drwholdings.com>
 ;; Maintainer: Gareth Jones <gjones@drwholdings.com>
 ;; Created: 02 Apr 2012
-;; Version: 0.0.1
+;; Version: 0.0.2
 
 ;;; Commentary:
 
@@ -18,47 +18,74 @@
 
 ;; position management utils
 
-(defvar ti-utils-servers
-  '(("sbs" . ((clj-rff        . ("sup-chiti20" "/sitelogs/clj-rrf/eventproxy/"
-                                 "inbound.log" "main.log" "outbound.log"))
-              (eventproxy     . ("sup-chiti20" "/sitelogs/eventproxy/"
-                                 "inbound.log" "eventproxy.log" "outbound-rabbit.log"))
-              (routingserver  . ("sup-chiti20" "/sitelogs/routingserver/"
-                                 "inbound.log" "routingserver.log" "outbound.log"))
-              (cs             . ("sup-chiti20" "/sitelogs/createserver/default/"
-                                 "inbound.log" "main.log" "outbound-json.log"))
-              (updateserver   . ("sup-chiti20" "/sitelogs/updateserver/"
-                                 "inbound.log" "updateserver.log" "outbound.log"))
-              (tradepersister . ("sup-chiti20" "/sitelogs/tradepersister/"
-                                 "inbound.log" "tradepersister.log" "sql.log"))))
-    ("prod" . ((eventproxy     . ("sup-chiti04" "/sitelogs/eventproxy/"
-                                  "inbound.log" "eventproxy.log" "outbound-rabbit.log"))
-               (routingserver  . ("sup-chiti04" "/sitelogs/routingserver/"
-                                  "inbound.log" "routingserver.log" "outbound.log"))
-               (cs             . ("sup-chiti04" "/sitelogs/createserver/*/"
-                                  "inbound.log" "main.log" "outbound-json.log"))
-               (updateserver   . ("sup-chiti04" "/sitelogs/updateserver/"
-                                  "inbound.log" "updateserver.log" "outbound.log"))))))
+(defun ti-utils/buffer->json (buffer)
+  (with-current-buffer buffer
+    (url-http-parse-response)
+    (goto-char url-http-end-of-headers)
+    (let ((json-string      (buffer-substring (point) (point-max)))
+          (json-key-type    'symbol)
+          (json-object-type 'alist))
+      (json-read-from-string json-string))))
 
-(defun ti-utils/grep-for (tstid date-suffix host dir &rest files)
-  (princ (format "%s\n-------------------------------------\n" dir))
+(defun ti-utils/get-json (url)
+  (let* ((url-request-method "GET"))
+    (ti-utils/buffer->json (url-retrieve-synchronously url))))
+
+(defvar ti-utils-taps-servers
+  '(hop
+    clj-rrf
+    eventproxy_rrf
+    eventproxy
+    routingserver
+    createserver
+    updateserver
+    tradepersister))
+
+(defun ti-utils/ti-config-for (environment)
+  (let* ((ti-config (ti-utils/get-json (concat "http://ti/config/" environment "/api/applications")))
+         (result (list)))
+    (dolist (records ti-config)
+      (let* ((app-name (car records))
+             (config (cdr records)))
+        (if (memq app-name ti-utils-taps-servers)
+            (dolist (servers config)
+              (let* ((server-name (car servers))
+                     (server-config (cdr servers)))
+                (dolist (instances server-config)
+                  (let* ((instance-name (car instances))
+                         (instance-config (cdr instances))
+                         (log-config (cdr (assoc 'logs instance-config)))
+                         (log-paths (mapcar (lambda (log) (cdr log)) log-config)))
+                    (setq result (cons (list app-name (apply #'list (symbol-name server-name) log-paths))
+                                       result)))
+                  (setq instances (cdr instances))))
+              (setq servers (cdr servers))))
+        (setq records (cdr records))))
+    result))
+
+(defun ti-utils/grep-for (tstid date-suffix host &rest files)
   (mapc (lambda (file)
           (let* ((filename (concat file date-suffix))
                  (result (shell-command-to-string
-                          (format "ssh prodappadmin@%s 'grep \"%s\" %s/%s'" host tstid dir filename))))
-            (princ (format "%s\n" filename))
+                          (format "ssh prodappadmin@%s 'grep \"%s\" %s'" host tstid filename))))
+            (princ (format "%s\n\n" filename))
             (if (string= "" result)
-                (princ "No matches\n")
+                (princ "no matches\n")
               (princ result))
             (princ "\n")
             (redisplay t)))
-        files))
+        files)
+  (princ "-------------------------------------\n\n"))
 
 ;;;###autoload
 (defun ti-utils/trace-trade-by-tstid (tstid days-back environment)
   (interactive "ststid: \nndays-back: \nsenv: ")
   (let* ((days-back (or days-back 0))
-         (environment (if (string= environment "") "sbs" environment))
+         (environment (if (string= environment "")
+                          "sbs"
+                        (if (string= environment "prod")
+                            "production"
+                          environment)))
          (date-suffix (if (> days-back 0)
                           (concat "."
                                   (format-time-string "%Y-%m-%d"
@@ -68,11 +95,15 @@
     (with-output-to-temp-buffer "*ti-utils*"
       (pop-to-buffer "*ti-utils*")
       (princ (format "searching for %s\n\n" tstid))
-      (mapc (lambda (s)
-              (let* ((server (car s))
-                     (opts   (cdr s)))
-                (apply #'ti-utils/grep-for tstid date-suffix opts)))
-            (cdr (assoc-string environment ti-utils-servers))))))
+      (let* ((ti-config (ti-utils/ti-config-for environment)))
+
+        (dolist (server ti-utils-taps-servers)
+          (dolist (config ti-config)
+            (let* ((server-name (car config))
+                   (opts        (cadr config)))
+              (if (eq server-name server)
+                  (apply #'ti-utils/grep-for tstid date-suffix opts)))))))
+    nil))
 
 ;; clojure project management goodies
 

@@ -10,3 +10,5 @@ xmodmap -e "add Control = Control_L"
 nohup xscreensaver -no-splash &
 
 xrdb -merge ~/.Xresources
+
+xloadimage -onroot -fit  /home/gjones/Dropbox/desktop_backgrounds/commodore.jpg

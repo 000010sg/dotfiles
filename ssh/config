@@ -1,5 +1,5 @@
-IdentityFile ~/.ssh/id_rsa.work
 IdentityFile ~/.ssh/id_rsa.pub
+IdentityFile ~/.ssh/id_rsa.work
 
 # buildserver
   Host tibuild

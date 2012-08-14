@@ -26,13 +26,15 @@ main = do
     xmproc <- spawnPipe "/usr/local/bin/xmobar /home/gjones/.xmobarrc"
     xmonad $ defaultConfig
         { modMask         = mod4Mask
-        , borderWidth     = 1
+        , borderWidth     = 2
         , terminal        = "urxvt"
         , layoutHook      = avoidStruts $ onWorkspace "chat" gajimLayout $ layoutHook defaultConfig
         , logHook         = dynamicLogWithPP $ xmobarPP
                             { ppOutput = hPutStrLn xmproc
-                            , ppTitle = xmobarColor "green" "" . shorten 50
+                            , ppTitle = xmobarColor "gray" "" . shorten 50
                             }
+        , normalBorderColor = "black"
+        , focusedBorderColor = "#9FD091"
         , manageHook      = myManageHook
         , workspaces      = ["term","web","sql","chat","5","6","7","8","9"]
         } `additionalKeys`

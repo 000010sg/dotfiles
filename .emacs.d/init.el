@@ -29,6 +29,8 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+(package-initialize)
+
 ;; ENVIRONMENT
 ;;--------------------------------------------------
 
@@ -89,7 +91,9 @@
      (contract 'defun)
      (defconstrainedfn 'defun)
      (defcontract 'defun)
-     (provide 'defun)))
+     (provide 'defun)
+     (log/log-time 'defun)
+     (cli 'defun)))
 
 ;; KEYBINDINGS
 ;;--------------------------------------------------
@@ -120,4 +124,7 @@
 
 ;; TI specific stuff
 
-(setq ti-utils-src-dir "~/sandbox/taps")
+(require 'ti-utils)
+(require 'ti-services)
+(setq ti-utils-src-dir "~/sandbox")
+(put 'downcase-region 'disabled nil)

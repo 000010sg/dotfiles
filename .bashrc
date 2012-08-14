@@ -47,5 +47,8 @@ export PATH="$GOROOT/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# sqldeveloper
+export PATH="/site/apps/sqldeveloper:$PATH"
+
 # fucking fig
 export FIG_REMOTE_URL=ftp://devnas/builds/Fig/repos

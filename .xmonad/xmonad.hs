@@ -17,6 +17,7 @@ myManageHook = composeAll
                 , className =? "URxvt"                    --> doShift "term"
                 , className =? "oracle-ide-boot-Launcher" --> doShift "sql"
                 , className =? "Gajim.py"                 --> doShift "chat"
+                , className =? "Firefox"                  --> doShift "web"
                 , className =? "Google-chrome"            --> doShift "web"]
 
 gridLayout = spacing 1 $ Grid

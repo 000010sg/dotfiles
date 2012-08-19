@@ -18,15 +18,17 @@ myManageHook = composeAll
                 , className =? "oracle-ide-boot-Launcher" --> doShift "sql"
                 , className =? "Gajim.py"                 --> doShift "chat"
                 , className =? "Firefox"                  --> doShift "web"
+                , className =? "Chromium-browser"         --> doShift "web"
+                , className =? "Vlc"                      --> doShift "movies"
                 , className =? "Google-chrome"            --> doShift "web"]
 
 gridLayout = spacing 1 $ Grid
 gajimLayout = withIM (1%7) (Title "Gajim") gridLayout
 
 main = do
-    xmproc <- spawnPipe "/usr/local/bin/xmobar /home/gjones/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/gjones/.xmobarrc"
     xmonad $ defaultConfig
-        { modMask         = mod4Mask
+        { modMask         = mod1Mask
         , borderWidth     = 2
         , terminal        = "urxvt"
         , layoutHook      = avoidStruts $ onWorkspace "chat" gajimLayout $ layoutHook defaultConfig
@@ -37,7 +39,7 @@ main = do
         , normalBorderColor = "black"
         , focusedBorderColor = "#9FD091"
         , manageHook      = myManageHook
-        , workspaces      = ["term","web","sql","chat","5","6","7","8","9"]
+        , workspaces      = ["term","web","sql","chat","movies","6","7","8","9"]
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         ]

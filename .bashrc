@@ -21,11 +21,8 @@ if [ -f $HOME/.ssh_completion ]; then
   source $HOME/.ssh_completion
 fi
 
-GIT_PS1_SHOWDIRTYSTATE=true
-if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-  source /usr/local/etc/bash_completion.d/git-completion.bash;
-  export PS1='\[\033[01;34m\]\w\[\033[00m\]\[\033[01;32m\]$(__git_ps1 " (%s)")\[\033[00m\] \n$ '
-fi
+# git-aware prompt
+PS1='\h:\W$(__git_ps1 "(%s)") \u\$ '
 
 # basic path
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:$PATH"

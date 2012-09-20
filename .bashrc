@@ -42,6 +42,7 @@ export LD_LIBRARY_PATH="/site/apps/LBM_3.6/Linux-2.6-glibc-2.5-x86_64/lib"
 # golang
 export GOROOT="/usr/lib/go"
 export PATH="$GOROOT/bin:$PATH"
+export GOPATH="$HOME/sandbox/gosrc"
 
 # rbenv 9_9
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -52,3 +53,8 @@ export PATH="/site/apps/sqldeveloper:$PATH"
 
 # fucking fig
 export FIG_REMOTE_URL=ftp://devnas/builds/Fig/repos
+
+# keep launcher password in file on machine only
+if [ -f $HOME/.launcherrc ]; then
+  source $HOME/.launcherrc 
+fi

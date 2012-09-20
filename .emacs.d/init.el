@@ -21,7 +21,9 @@
                       clojurescript-mode
                       color-theme
                       color-theme-solarized
-                      expectations-mode)
+                      expectations-mode
+                      nrepl
+                      expand-region)
 
   "A list of packages to ensure are installed at launch.")
 
@@ -93,7 +95,10 @@
      (defcontract 'defun)
      (provide 'defun)
      (log/log-time 'defun)
-     (cli 'defun)))
+     (cli 'defun)
+     (start 'defun)
+     (stub-tradio 'defun)
+     (stub-hitch 'defun)))
 
 ;; KEYBINDINGS
 ;;--------------------------------------------------
@@ -128,3 +133,10 @@
 (require 'ti-services)
 (setq ti-utils-src-dir "~/sandbox")
 (put 'downcase-region 'disabled nil)
+
+(setq nrepl-lein-command "lein2")
+
+;; expand-region
+(global-set-key (kbd "C-x 9") 'er/expand-region)
+(global-set-key (kbd "C-x 0") 'er/contract-region)
+

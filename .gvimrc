@@ -124,3 +124,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+
+" use vim stuff in go src
+set rtp+=$GOROOT/misc/vim
+

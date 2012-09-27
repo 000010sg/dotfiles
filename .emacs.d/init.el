@@ -138,5 +138,4 @@
 
 ;; expand-region
 (global-set-key (kbd "C-x 9") 'er/expand-region)
-(global-set-key (kbd "C-x 0") 'er/contract-region)
 

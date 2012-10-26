@@ -127,6 +127,12 @@
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (put 'upcase-region 'disabled nil)
 
+;; shift-arrow keys not cool in a terminal
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
 ;; TI specific stuff
 
 (require 'ti-utils)
@@ -134,8 +140,9 @@
 (setq ti-utils-src-dir "~/sandbox")
 (put 'downcase-region 'disabled nil)
 
-(setq nrepl-lein-command "lein2")
-
 ;; expand-region
 (global-set-key (kbd "C-x 9") 'er/expand-region)
+
+(setenv "EXPECTATIONS_COLORIZE" "false")
+
 

@@ -39,6 +39,8 @@ export LD_LIBRARY_PATH="/site/apps/LBM_3.6/Linux-2.6-glibc-2.5-x86_64/lib"
 # golang
 export GOROOT="/usr/lib/go"
 export PATH="$GOROOT/bin:$PATH"
+export GOPATH="$HOME/sandbox/gosrc"
+export PATH="$HOME/sandbox/gosrc/bin:$PATH"
 
 # rbenv 9_9
 export PATH="$HOME/.rbenv/bin:$PATH"

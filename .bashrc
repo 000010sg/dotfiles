@@ -22,8 +22,8 @@ if [ -f $HOME/.ssh_completion ]; then
 fi
 
 GIT_PS1_SHOWDIRTYSTATE=true
-if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-  source /usr/local/etc/bash_completion.d/git-completion.bash;
+if [ -f /etc/bash_completion.d/git ]; then
+  source /etc/bash_completion.d/git;
   export PS1='\[\033[01;34m\]\w\[\033[00m\]\[\033[01;32m\]$(__git_ps1 " (%s)")\[\033[00m\] \n$ '
 fi
 

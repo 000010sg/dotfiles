@@ -36,7 +36,7 @@ termLayout = Full ||| threecols ||| twocols
     fiftyratio = 50/100
 
 main = do
-    xmproc <- spawnPipe "/usr/local/bin/xmobar /home/gjones/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/gjones/.xmobarrc"
     xmonad $ defaultConfig
         { modMask         = mod4Mask
         , borderWidth     = 2

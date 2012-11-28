@@ -1,6 +1,8 @@
 ;; PACKAGES
 ;;--------------------------------------------------
 
+(require 'hippie-exp)
+
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
@@ -50,6 +52,12 @@
 
 ;; add my vendor dir to load path
 (add-to-list 'load-path vendor-dir)
+
+;; shove temp backup files in /tmp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; CODING STYLES
 ;;--------------------------------------------------
@@ -128,3 +136,9 @@
 (require 'ti-services)
 (setq ti-utils-src-dir "~/sandbox")
 (put 'downcase-region 'disabled nil)
+
+;; babel
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((python . t)
+                             (js . t)))

@@ -20,3 +20,5 @@ xmodmap -e "keycode 133 = Alt_L"
 xrdb -merge ~/.Xresources
 
 # xloadimage -onroot -fit  /home/gjones/Dropbox/desktop_backgrounds/commodore.jpg
+
+vmware-user &

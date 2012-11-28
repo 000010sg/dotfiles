@@ -21,9 +21,9 @@
                       clojurescript-mode
                       color-theme
                       color-theme-solarized
-                      expectations-mode
                       nrepl
-                      expand-region)
+                      expand-region
+                      elpy)
 
   "A list of packages to ensure are installed at launch.")
 
@@ -100,6 +100,12 @@
      (stub-tradio 'defun)
      (stub-hitch 'defun)))
 
+;; Python
+;;--------------------------------------------------
+
+(elpy-enable)
+(setq python-check-command "pylint")
+
 ;; KEYBINDINGS
 ;;--------------------------------------------------
 
@@ -145,4 +151,4 @@
 
 (setenv "EXPECTATIONS_COLORIZE" "false")
 
-
+(setq js-indent-level 2)

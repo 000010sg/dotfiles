@@ -19,7 +19,7 @@ myManageHook :: ManageHook
 myManageHook = composeAll
                 [ manageDocks
                 , className =? "URxvt"                    --> doShift "term"
-                , className =? "oracle-ide-boot-Launcher" --> doShift "sql"
+                , className =? "nautilus"                 --> doShift "files"
                 , className =? "Gajim.py"                 --> doShift "chat"
                 , className =? "Firefox"                  --> doShift "web"
                 , className =? "Google-chrome"            --> doShift "web"]
@@ -49,7 +49,7 @@ main = do
         , normalBorderColor = "black"
         , focusedBorderColor = "#9FD091"
         , manageHook      = myManageHook
-        , workspaces      = ["term","web","sql","chat","5","6","7","8","9"]
+        , workspaces      = ["term","web","files","chat","5","6","7","8","9"]
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         ]

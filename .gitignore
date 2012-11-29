@@ -17,6 +17,7 @@ doc/tags
 .emacs.d/places
 .emacs.d/eshell
 .emacs.d/url
+.emacs.d/ac-comphist.dat
 .xmonad/xmonad.hi
 .xmonad/xmonad.o
 .xmonad/xmonad.errors

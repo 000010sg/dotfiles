@@ -35,3 +35,8 @@ export PATH="$HOME/sandbox/gosrc/bin:$PATH"
 
 # fucking fig
 export FIG_REMOTE_URL=ftp://devnas/builds/Fig/repos
+
+# keep launcher password in file on machine only
+if [ -f $HOME/.launcherrc ]; then
+  source $HOME/.launcherrc 
+fi

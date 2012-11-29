@@ -22,6 +22,8 @@
                       clojure-test-mode
                       color-theme
                       color-theme-solarized
+                      nrepl
+                      expand-region
                       elpy)
 
   "A list of packages to ensure are installed at launch.")
@@ -100,7 +102,16 @@
      (defcontract 'defun)
      (provide 'defun)
      (log/log-time 'defun)
-     (cli 'defun)))
+     (cli 'defun)
+     (start 'defun)
+     (stub-tradio 'defun)
+     (stub-hitch 'defun)))
+
+;; Python
+;;--------------------------------------------------
+
+(elpy-enable)
+(setq python-check-command "pylint")
 
 ;; KEYBINDINGS
 ;;--------------------------------------------------
@@ -129,6 +140,12 @@
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (put 'upcase-region 'disabled nil)
 
+;; shift-arrow keys not cool in a terminal
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
 ;; TI specific stuff
 
 (require 'ti-utils)
@@ -141,3 +158,7 @@
 (org-babel-do-load-languages
  'org-babel-load-languages '((python . t)
                              (js . t)))
+;; expand-region
+(global-set-key (kbd "C-x 9") 'er/expand-region)
+
+(setq js-indent-level 2)

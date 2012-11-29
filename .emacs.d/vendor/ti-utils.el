@@ -33,6 +33,7 @@
 
 (defvar ti-utils-taps-servers
   '(hop
+    hodor
     clj-rrf
     eventproxy_rrf
     eventproxy
@@ -153,7 +154,6 @@
           (progn
             (ti-utils/print (format "updated %s to %s!" lib version))
             (write-region (point-min) (point-max) file-path)
-            (ti-utils/run-lein-deps-for file-path)
             (when commit-p
               (ti-utils/git-commit-change file-path lib version)))
         (ti-utils/print (format "not found, skipping"))))))
@@ -162,8 +162,7 @@
 (defun ti-utils/update-clojure-dep (lib version commit-to-git)
   "Given a library name and a version, will find all project.clj
 files below ti-utils-src-dir, search them for a dependency on
-that library and if found, will update the dependency. `lein
-deps` will be ran inside the directory automatically.
+that library and if found, will update the dependency.
 
 If commit-to-git is 'y', then the project.clj file will be
 committed to the git repo with an appropriate message."

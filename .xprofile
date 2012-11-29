@@ -1,15 +1,6 @@
-#xmodmap -e "remove Lock = Caps_Lock"
-#xmodmap -e "keysym Caps_Lock = Control_L"
-#xmodmap -e "add Control = Control_L"
-#
-#xmodmap -e "remove mod1 = Alt_L Alt_R"
-#xmodmap -e "remove mod4 = Super_L Super_R"
-#xmodmap -e "add mod1 = Super_L Super_R"
-#xmodmap -e "add mod4 = Alt_L Alt_R"
-
 # switch caps_lock to be control
 xmodmap -e "clear lock"
-xmodmap -e "add control = caps_lock"
+xmodmap -e "add control = Caps_Lock"
 
 # swap alt and apple key
 xmodmap -e "keycode 64 = Super_L"
@@ -19,6 +10,6 @@ xmodmap -e "keycode 133 = Alt_L"
 
 xrdb -merge ~/.Xresources
 
-# xloadimage -onroot -fit  /home/gjones/Dropbox/desktop_backgrounds/commodore.jpg
+xloadimage -onroot -fit  /home/gjones/Dropbox/desktop_backgrounds/elevator_charles\ \(1\).jpg
 
 vmware-user &

@@ -20,10 +20,9 @@
                       go-mode
                       clojure-mode
                       clojure-test-mode
-                      clojurescript-mode
                       color-theme
                       color-theme-solarized
-                      expectations-mode)
+                      elpy)
 
   "A list of packages to ensure are installed at launch.")
 

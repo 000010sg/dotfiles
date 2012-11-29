@@ -30,7 +30,7 @@ URxvt.lineSpace:            0
 URxvt.allow_bold:           false
 /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
 URxvt*font: xft:Inconsolata:pixelsize=18
-URxvt*boldFont: xft:DejaVu Sans Mono:style=Bold:pixelsize=18
+URxvt*boldFont: xft:Inconsolata:style=Bold:pixelsize=18
 
 ! Fix font space
 URxvt*letterSpace: -1
@@ -40,9 +40,15 @@ URxvt.scrollStyle:          rxvt
 URxvt.scrollBar:            false
 
 ! Perl extensions
-URxvt.perl-ext-common:      default,matcher,tabbed
+URxvt.perl-ext-common:      default,matcher,tabbed,clipboard
 URxvt.matcher.button:       1
 URxvt.urlLauncher:          google-chrome
+
+! Keymappings
+
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-c: perl:clipboard:paste_escaped
 
 ! Cursor
 URxvt.cursorBlink:          true
@@ -51,6 +57,9 @@ URxvt.cursorUnderline:      false
 
 ! Pointer
 URxvt.pointerBlank:         true
+
+! stupid iso box thing
+URxvt.iso14755:             false
 
 !!Source http://github.com/altercation/solarized
 

@@ -21,27 +21,18 @@ if [ -f $HOME/.ssh_completion ]; then
   source $HOME/.ssh_completion
 fi
 
-GIT_PS1_SHOWDIRTYSTATE=true
-if [ -f /etc/bash_completion.d/git ]; then
-  source /etc/bash_completion.d/git;
-  export PS1='\[\033[01;34m\]\w\[\033[00m\]\[\033[01;32m\]$(__git_ps1 " (%s)")\[\033[00m\] \n$ '
-fi
+# git-aware prompt
+PS1='\h:\W$(__git_ps1 "(%s)") \u\$ '
 
 # basic path
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
-
-# lbm (ugh)
-export LD_LIBRARY_PATH="/site/apps/LBM_3.6/Linux-2.6-glibc-2.5-x86_64/lib"
 
 # golang
 export GOROOT="/usr/lib/go"
 export PATH="$GOROOT/bin:$PATH"
 export GOPATH="$HOME/sandbox/gosrc"
+export PATH="$HOME/sandbox/gosrc/bin:$PATH"
 
 # fucking fig
 export FIG_REMOTE_URL=ftp://devnas/builds/Fig/repos
 
-# keep launcher password in file on machine only
-if [ -f $HOME/.launcherrc ]; then
-  source $HOME/.launcherrc 
-fi
